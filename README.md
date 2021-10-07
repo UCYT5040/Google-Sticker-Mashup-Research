@@ -20,5 +20,5 @@ Duration: < 1 s
 First Seen: 10/07/21 14:42:21.691
 Last Seen: 10/07/21 14:42:21.817
 ```
-[https://github.com/UCYT5040/Google-Sticker-Mashup-Research/blob/main/img/nslookup.jpg?raw=true](image)
+![](https://github.com/UCYT5040/Google-Sticker-Mashup-Research/blob/main/img/nslookup.jpg?raw=true)
 At first we thougt that that doesn't look like Google, but it gives a Google 404 error.
