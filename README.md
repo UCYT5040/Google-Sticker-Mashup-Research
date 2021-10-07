@@ -23,3 +23,15 @@ Last Seen: 10/07/21 14:42:21.817
 ![](https://github.com/UCYT5040/Google-Sticker-Mashup-Research/blob/main/img/nslookup.jpg?raw=true)
 `ord37s34-in-f10.1e100.net`
 At first we thougt that that doesn't look like Google, but it gives a Google 404 error.
+```
+  let api = new URL('https://tenor.googleapis.com/v2/featured');
+  api.searchParams.append('key', 'AIzaSyAyimkuYQYF_FXVALexPuGQctUWRURdCYQ');
+  api.searchParams.append('client_key', 'gboard');
+  api.searchParams.append('contentfilter', 'high');
+  api.searchParams.append('media_filter', 'png_transparent');
+  api.searchParams.append('component', 'proactive');
+  api.searchParams.append('collection', 'emoji_kitchen_v5');
+  api.searchParams.append('locale', 'en_US');
+  api.searchParams.append('country', 'US');
+  api.searchParams.append('q', query2 ? `${query}_${query2}` : query);
+```
