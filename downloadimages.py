@@ -1,5 +1,5 @@
 import json, grequests
-urls = json.load(open("image_urls", "r"))
+urls = json.load(open("image_urls.json", "r"))
 urls = dict([(value, key) for key, value in urls.items()])
 responses = (grequests.get(url) for url in urls.keys())
 responses = grequests.map(responses)
