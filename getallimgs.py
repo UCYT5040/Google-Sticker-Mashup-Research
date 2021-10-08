@@ -25,7 +25,7 @@ for emoji1 in emojis:
             if fp in image_urls:
                 print("  + duplicate")
             image_urls[fp] = url
-         except BaseException:
+        except BaseException:
             print(f"{ord(emoji1):x}_{ord(emoji2):x} ({emoji1} + {emoji2})")
             api_url = api_url_format.format(quote(emoji1), quote(emoji2))
             data = requests.get(api_url).json()
