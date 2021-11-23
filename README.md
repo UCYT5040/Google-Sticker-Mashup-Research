@@ -6,6 +6,8 @@ Contributing is nice, and you will be listed below for contributing.
 - Sebi (@Supersebi3)
 - kerky the duck (@kerkpower)
 - UCYT5040 (@UCYT5040)
+
+
 If you don't know what to contribute, vote on https://sticker-vote.ucyt5040.repl.co/ for the best sticker. Data is posted in `data.json`. Open an issue if it isnt working.
 ## Info
 ```
