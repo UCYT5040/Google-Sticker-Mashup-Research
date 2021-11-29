@@ -1,6 +1,6 @@
 # Google-Sticker-Mashup-Research
 Research on how Gboard Stickers work.
-> **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo.
+> **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo and use the stickers directory.
 ## Contribute
 Contributing is nice, and you will be listed below for contributing.
 ### Contributors
