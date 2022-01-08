@@ -10,10 +10,12 @@ with open("emojis.txt") as f:
 
 image_urls = {}
 
+multichar_ord = lambda s: '-'.join(map(lambda c: f"{ord(c):x}", (s)))
+
 for emoji1 in emojis:
     for emoji2 in emojis:
         try:
-            print(f"{ord(emoji1):x}_{ord(emoji2):x} ({emoji1} + {emoji2})")
+            print(f"{multichar_ord(emoji1)}_{multichar_ord(emoji2)} ({emoji1} + {emoji2})")
             api_url = api_url_format.format(quote(emoji1), quote(emoji2))
             data = requests.get(api_url).json()
             results = data["results"]
@@ -26,7 +28,7 @@ for emoji1 in emojis:
                 print("  + duplicate")
             image_urls[fp] = url
         except BaseException:
-            print(f"{ord(emoji1):x}_{ord(emoji2):x} ({emoji1} + {emoji2})")
+            print(f"{multichar_ord(emoji1)}_{multichar_ord(emoji2)} ({emoji1} + {emoji2})")
             api_url = api_url_format.format(quote(emoji1), quote(emoji2))
             data = requests.get(api_url).json()
             results = data["results"]
