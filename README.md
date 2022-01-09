@@ -2,14 +2,15 @@
 Research on how Gboard Stickers work.
 > **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo and use the stickers directory.
 ## Links
-- https://random.ucyt5040.repl.co/ - random sticker
-- https://sticker-vote.ucyt5040.repl.co/ - vote for your favorite sticker
+- https://random.ucyt5040.repl.co/ - random sticker (missing new stickers)
+- https://sticker-vote.ucyt5040.repl.co/ - vote for your favorite sticker (soon to have new stickers)
 ## Contribute
 Contributing is nice, and you will be listed below for contributing.
 ### Contributors
 - Sebi (@Supersebi3)
 - kerky the duck (@kerkpower)
 - UCYT5040 (@UCYT5040)
+- w4v3 (@w4v3)
 
 
 If you don't know what to contribute, vote on https://sticker-vote.ucyt5040.repl.co/ for the best sticker. Data is posted in `data.json`. Open an issue if it isnt working.
