@@ -1,5 +1,5 @@
 # Google-Sticker-Mashup-Research
-Research on how Gboard Stickers work.
+Research on how Gboard Emoji Kitchen Stickers work.
 > **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo and use the stickers directory.
 ## Links
 - https://random.ucyt5040.repl.co/ - random sticker (missing new stickers)
