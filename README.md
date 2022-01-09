@@ -1,5 +1,5 @@
 # Google Emoji Kitchen Research
-<center>![Google Sticker Banner](https://github.com/UCYT5040/Google-Sticker-Mashup-Research/blob/main/banner.png?raw=true)</center>
+<img align="center" width="1000" height="1000" src="https://github.com/UCYT5040/Google-Sticker-Mashup-Research/blob/main/banner.png?raw=true">
 
 Research on how Gboard Emoji Kitchen Stickers work.
 > **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo and use the stickers directory.
