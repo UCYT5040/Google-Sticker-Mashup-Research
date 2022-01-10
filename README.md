@@ -2,6 +2,9 @@
 
 Research on how Gboard Emoji Kitchen Stickers work.
 > **Note:** It is not recommended to use any of our Python files to download stickers, just clone this repo and use the stickers directory.
+## Also See
+- https://github.com/UCYT5040/Duckify-Encoder Encode your message with ducks!
+- https://github.com/UCYT5040/Country-Game A multiplayer game to name as many countries as possible!
 ## Links
 - https://random.ucyt5040.repl.co/ - random sticker (missing new stickers)
 - https://sticker-vote.ucyt5040.repl.co/ - vote for your favorite sticker (soon to have new stickers)
