@@ -1,3 +1,9 @@
+/**
+ * @file download.ts
+ * @description Utilities to download emoji pairs from the Google Emoji Kitchen and save them to the file system.
+ */
+
+
 import {emojiToCodepointString, formatEmojiPair} from './format';
 import fs from 'fs';
 
