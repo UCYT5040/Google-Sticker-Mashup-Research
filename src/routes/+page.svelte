@@ -126,11 +126,18 @@
         justify-content: center;
         margin-bottom: 0;
     }
+
+    .star-button {
+        margin-left: 1rem;
+    }
 </style>
 
 <h1 class="title">
     <Emoji emoji="🔪" size={64}/>
     Emoji Chef
+    <span class="star-button"><a aria-label="Star UCYT5040/Google-Emoji-Kitchen-Research on GitHub" class="github-button"
+       data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-star" data-show-count="true"
+       data-size="large" href="https://github.com/UCYT5040/Google-Emoji-Kitchen-Research">Star</a></span>
 </h1>
 
 <div class="app">
