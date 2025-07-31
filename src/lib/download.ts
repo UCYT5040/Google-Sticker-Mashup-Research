@@ -9,84 +9,73 @@ import fs from 'fs';
 
 export const stickerPath = process.env.STICKER_PATH || 'stickers';
 
-export function getUrl(emojiA: string, emojiB: string): string {
-    return `https://www.gstatic.com/android/keyboard/emojikitchen/20220815/${
-        emojiToCodepointString(emojiA)
-    }/${
-        formatEmojiPair(emojiA, emojiB)
-    }.png`;
+const dates = ["20201001", "20210831", "20220815", "20230803", "20240530"]
+
+export function getUrls(emojiA: string, emojiB: string): string[] {
+    return dates.map(date =>
+        `https://www.gstatic.com/android/keyboard/emojikitchen/${date}/${
+            emojiToCodepointString(emojiA)
+        }/${
+            formatEmojiPair(emojiA, emojiB)
+        }.png`
+    );
 }
 
 interface QueueItem {
-    url: string;
+    urls: string[];
     filename: string; // Without the extension.
     resolve: () => void;
     reject: (reason?: any) => void;
 }
-
-const failureExpiration = 1000 * 60 * 60 * 24; // 24 hours in milliseconds.
 
 let queue: QueueItem[] = [];
 
 async function processQueue() {
     if (queue.length === 0) return;
 
-    const {url, resolve, reject} = queue[0];
+    const {urls, filename, resolve, reject} = queue[0];
 
-    // Ensure filename.png does not exist and filename.txt does not exist, or contains a date greater than failureExpiration.
-    const filename = queue[0].filename;
     const filePath = `${stickerPath}/${filename}.png`;
-    const failureFilePath = `${stickerPath}/${filename}.txt`;
-    const failureFileExists = fs.existsSync(failureFilePath);
-    const failureFileDate = failureFileExists ? new Date(fs.statSync(failureFilePath).mtime) : null;
-    const now = new Date();
-    if (fs.existsSync(filePath) ||
-        (failureFileExists && failureFileDate && (now.getTime() - failureFileDate.getTime() < failureExpiration))) {
-        // If the file already exists or the failure file is too recent, resolve immediately.
+    if (fs.existsSync(filePath)) {
         resolve();
-        queue.shift(); // Remove the processed item from the queue.
-        processQueue(); // Process the next item in the queue.
+        queue.shift();
+        processQueue();
         return;
     }
 
     try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Failed to download emoji pair: ${response.statusText}`);
-        }
-        if (!response.headers.get('content-type')?.startsWith('image/png')) {
-            throw new Error(`Unexpected content type: ${response.headers.get('content-type')}`);
-        }
-        const arrayBuffer = await response.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
+        // Try all URLs in parallel, return the first valid one
+        const results = await Promise.all(urls.map(async (url) => {
+            try {
+                const response = await fetch(url);
+                console.log(response);
+                if (!response.ok) return null;
+                const arrayBuffer = await response.arrayBuffer();
+                return { buffer: Buffer.from(arrayBuffer), url };
+            } catch {
+                return null;
+            }
+        }));
+        const valid = results.find(r => r !== null);
+        if (!valid) throw new Error('No valid URL found');
+        const { buffer } = valid;
 
-        // Ensure the sticker_path directory exists.
         fs.mkdirSync(stickerPath, {recursive: true});
-
-        // Write the image to the file system.
         fs.writeFileSync(filePath, buffer);
-
-        // Remove any existing failure file.
-        if (fs.existsSync(failureFilePath)) {
-            fs.unlinkSync(failureFilePath);
-        }
-
         resolve();
     } catch (error) {
-        // Write a failure file with the current date
-        fs.writeFileSync(failureFilePath, new Date().toISOString());.
         reject(error);
     } finally {
-        queue.shift(); // Remove the processed item from the queue.
-        processQueue(); // Process the next item in the queue.
+        queue.shift();
+        processQueue();
     }
 }
 
 export function downloadEmojiPair(emojiA: string, emojiB: string): Promise<string> {
-    const url = getUrl(emojiA, emojiB);
+    const urls = getUrls(emojiA, emojiB);
     const filename = formatEmojiPair(emojiA, emojiB);
     return new Promise((resolve, reject) => {
-        queue.push(<QueueItem>{url, filename, resolve, reject});
+        queue.push(<QueueItem>{urls, filename, resolve, reject});
         if (queue.length === 1) {
             processQueue();
         }

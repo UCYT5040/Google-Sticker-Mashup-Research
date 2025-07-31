@@ -33,6 +33,19 @@ export function formatEmojiPair(emojiA: string, emojiB: string): string {
     const stringA = emojiToCodepointString(emojiA);
     const stringB = emojiToCodepointString(emojiB);
 
+    let codepoints = [stringA, stringB];
+
     // Join the two emoji strings with an underscore.
-    return `${stringA}_${stringB}`;
+    return codepoints.join('_');
+}
+
+export function codepointStringToEmoji(codepointString: string): string {
+    // Split the code point string by hyphen-minus and convert each part back to a character.
+    return codepointString.split('-').map(cp => String.fromCodePoint(parseInt(cp.replace('u', ''), 16))).join('');
+}
+
+export function formattedPairToEmojis(formattedPair: string): [string, string] {
+    // Split the formatted pair by underscore and convert each part back to an emoji.
+    const [emojiA, emojiB] = formattedPair.split('_');
+    return [codepointStringToEmoji(emojiA), codepointStringToEmoji(emojiB)];
 }
