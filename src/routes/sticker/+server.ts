@@ -23,7 +23,14 @@ async function getSticker(emojiA: string, emojiB: string): Promise<Response> {
         return json({image: `data:image/png;base64,${base64Data}`});
     } else {
         try {
-            await Promise.all([downloadEmojiPair(emojiA, emojiB), downloadEmojiPair(emojiB, emojiA)]);
+            const results = await Promise.allSettled([
+                downloadEmojiPair(emojiA, emojiB),
+                downloadEmojiPair(emojiB, emojiA)
+            ]);
+            const allFailed = results.every(r => r.status === 'rejected');
+            if (allFailed) {
+                throw new Error('Both downloads failed');
+            }
             return await getSticker(emojiA, emojiB);
         } catch (err) {
             console.error(`Error downloading sticker for ${emojiA} and ${emojiB}:`, err);
