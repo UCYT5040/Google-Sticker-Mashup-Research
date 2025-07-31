@@ -3,7 +3,7 @@ import {stickerPath} from '$lib/download';
 import fs from 'fs';
 import {formattedPairToEmojis} from '$lib/format';
 
-export const load: PageLoad = ({ params }) => {
+export const load: PageLoad = () => {
     // Find a list of all emojis that have at least one sticker
     let emojisWithStickers: Set<string> = new Set();
     // List all files in the stickers directory
