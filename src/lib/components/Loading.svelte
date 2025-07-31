@@ -33,7 +33,7 @@
     let sizeVal = $derived(`${size}`);
 
     let animationStep = 0; // 0 to 1
-    let animationDuration = 4000; // 4 seconds
+    let animationDuration = 2000; // 2 seconds
     let lastFrame: number | null = null;
     let doneAnimation = 0;
 
