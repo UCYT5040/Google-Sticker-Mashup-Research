@@ -80,10 +80,20 @@
     :global(body) {
         background-color: #30292F;
         color: #f1f1f1;
-        font-family: Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .app {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+        width: calc(100% - 4rem);
         height: 100vh;
         margin: 0 2rem;
     }
@@ -108,25 +118,40 @@
         width: 15rem;
         height: 15rem;
     }
+
+    .title {
+        font-size: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
 </style>
 
-<EmojiPicker selection={selection} emojisWithStickers={data.emojisWithStickers}/>
+<h1 class="title">
+    <Emoji emoji="🔪" size={64}/>
+    Emoji Chef
+</h1>
 
-<div class="formula">
-    <Emoji emoji={defaultEmojiA} size={150}/>
-    +
-    <Emoji emoji={defaultEmojiB} size={150}/>
-    =
-</div>
+<div class="app">
+    <EmojiPicker selection={selection} emojisWithStickers={data.emojisWithStickers}/>
 
-<div class="result">
-    {#if result && !pendingResult}
-        <img src={result} alt="Resulting sticker"/>
-    {:else if emojiA && emojiB && done && !pendingResult}
-        <Error></Error>
-    {:else if emojiA && emojiB}
-        <Loading emojiA={emojiA} emojiB={emojiB} done={done} complete={complete}/>
-    {:else}
-        <div class="empty"></div>
-    {/if}
+    <div class="formula">
+        <Emoji emoji={defaultEmojiA} size={150}/>
+        +
+        <Emoji emoji={defaultEmojiB} size={150}/>
+        =
+    </div>
+
+    <div class="result">
+        {#if result && !pendingResult}
+            <img src={result} alt="Resulting sticker"/>
+        {:else if emojiA && emojiB && done && !pendingResult}
+            <Error></Error>
+        {:else if emojiA && emojiB}
+            <Loading emojiA={emojiA} emojiB={emojiB} done={done} complete={complete}/>
+        {:else}
+            <div class="empty"></div>
+        {/if}
+    </div>
 </div>
