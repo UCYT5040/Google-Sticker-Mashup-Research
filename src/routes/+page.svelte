@@ -3,7 +3,7 @@
     import Loading from '$lib/components/Loading.svelte';
     import Emoji from '$lib/components/Emoji.svelte';
     import Error from '$lib/components/Error.svelte';
-    import type { PageProps } from './$types';
+    import type {PageProps} from './$types';
 
     let {data}: PageProps = $props();
 
@@ -141,7 +141,7 @@
 </h1>
 
 <div class="app">
-    <EmojiPicker selection={selection} emojisWithStickers={data.emojisWithStickers}/>
+    <EmojiPicker emojisWithStickers={data.emojisWithStickers} selection={selection}/>
 
     <div class="formula">
         <Emoji emoji={defaultEmojiA} size={150}/>
